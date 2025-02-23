@@ -66,6 +66,9 @@ class Cell():
         self.window = window
     
     def draw(self):
+        if self.window == None:
+            #print("No Window; skipping draw")
+            return
         tr_point = Point(self._br_point.x, self._tl_point.y)
         bl_point = Point(self._tl_point.x, self._br_point.y)
         if self.has_bottom_wall:
