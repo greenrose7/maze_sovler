@@ -36,3 +36,33 @@ class Line():
 
     def draw(self, canvas :Canvas, fill_color :str):
         canvas.create_line(self.point_one.x, self.point_one.y, self.point_two.x, self.point_two.y, fill=fill_color, width=2)
+
+class Cell():
+    def __init__(self, tl_point :Point, br_point :Point, window :Window):
+        self.has_left_wall = True
+        self.has_right_wall = True
+        self.has_top_wall = True
+        self.has_bottom_wall = True
+        # self._x1 = tl_point.x
+        # self._y1 = tl_point.y
+        # self._x2 = br_point.x
+        # self._y2 = br_point.y
+        self._tl_point = tl_point
+        self._br_point = br_point
+        self.window = window
+    
+    def draw(self):
+        tr_point = Point(self._br_point.x, self._tl_point.y)
+        bl_point = Point(self._tl_point.x, self._br_point.y)
+        if self.has_bottom_wall:
+            line = Line(bl_point, self._br_point)
+            line.draw(self.window.canvas, "black")
+        if self.has_top_wall:
+            line = Line(tr_point, self._tl_point)
+            line.draw(self.window.canvas, "black")
+        if self.has_left_wall:
+            line = Line(bl_point, self._tl_point)
+            line.draw(self.window.canvas, "black")
+        if self.has_right_wall:
+            line = Line(tr_point, self._br_point)
+            line.draw(self.window.canvas, "black")

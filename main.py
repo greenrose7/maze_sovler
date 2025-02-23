@@ -2,7 +2,8 @@ from graphics import *
 
 def main():
     win = Window(800, 600, "my title")
-    test_lines(win)
+    #test_lines(win)
+    test_cells(win)
     win.wait_for_close()
 
 def test_lines(window :Window):
@@ -15,6 +16,18 @@ def test_lines(window :Window):
     mid_right = Point(800, 300)
     ml_mr_line = Line(mid_right, mid_left)
     ml_mr_line.draw(window.canvas, "purple")
+
+def test_cells(window :Window):
+    cell_1 = Cell(Point(10, 10), Point(30, 30), window)
+    cell_1.draw()
+    cell_2 = Cell(Point(30, 30), Point(80, 80), window)
+    cell_2.has_bottom_wall = False
+    cell_2.has_right_wall = False
+    cell_2.draw()
+    
+    cell_3 = Cell(Point(100, 100), Point(200, 150), window)
+    cell_3.has_top_wall = False
+    cell_3.draw()
 
 if __name__ == "__main__":
     main()
