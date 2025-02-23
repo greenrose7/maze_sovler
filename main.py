@@ -1,9 +1,12 @@
 from graphics import *
+from time import sleep
 
 def main():
     win = Window(800, 600, "my title")
     #test_lines(win)
-    test_cells(win)
+    cell1, cell2, cell3 = test_cells(win)
+    test_move_draw(cell1, cell2, cell3)
+    test_move_draw(cell1, cell2, cell3, undo=True)
     win.wait_for_close()
 
 def test_lines(window :Window):
@@ -28,6 +31,20 @@ def test_cells(window :Window):
     cell_3 = Cell(Point(100, 100), Point(200, 150), window)
     cell_3.has_top_wall = False
     cell_3.draw()
+    return cell_1, cell_2, cell_3
+
+def test_move_draw(*args, undo=False):
+    if len(args) < 2:
+        print("Not enough cells to draw between")
+        return
+    last_point :Cell = None 
+    cell :Cell
+    for cell in args:
+        if last_point != None:
+            last_point.draw_move(cell, undo)
+        last_point = cell
+
+
 
 if __name__ == "__main__":
     main()
