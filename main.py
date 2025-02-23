@@ -1,12 +1,14 @@
 from graphics import *
+from maze import Maze
 from time import sleep
 
 def main():
     win = Window(800, 600, "my title")
-    #test_lines(win)
-    cell1, cell2, cell3 = test_cells(win)
-    test_move_draw(cell1, cell2, cell3)
-    test_move_draw(cell1, cell2, cell3, undo=True)
+    # test_lines(win)
+    # cell1, cell2, cell3 = test_cells(win)
+    # test_move_draw(cell1, cell2, cell3)
+    # test_move_draw(cell1, cell2, cell3, undo=True)
+    maze = Maze(30, 30, 8, 10, 50, 60, win)
     win.wait_for_close()
 
 def test_lines(window :Window):
