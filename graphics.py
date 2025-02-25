@@ -74,15 +74,27 @@ class Cell():
         if self.has_bottom_wall:
             line = Line(bl_point, self._br_point)
             line.draw(self.window.canvas, "black")
+        else:
+            line = Line(bl_point, self._br_point)
+            line.draw(self.window.canvas, "#d9d9d9")
         if self.has_top_wall:
             line = Line(tr_point, self._tl_point)
             line.draw(self.window.canvas, "black")
+        else:
+            line = Line(tr_point, self._tl_point)
+            line.draw(self.window.canvas, "#d9d9d9")
         if self.has_left_wall:
             line = Line(bl_point, self._tl_point)
             line.draw(self.window.canvas, "black")
+        else:
+            line = Line(bl_point, self._tl_point)
+            line.draw(self.window.canvas, "#d9d9d9")
         if self.has_right_wall:
             line = Line(tr_point, self._br_point)
             line.draw(self.window.canvas, "black")
+        else:
+            line = Line(tr_point, self._br_point)
+            line.draw(self.window.canvas, "#d9d9d9")
     
     def draw_move(self, to_cell, undo=False):
         start = (self._tl_point + self._br_point) / 2
