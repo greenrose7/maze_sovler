@@ -29,6 +29,7 @@ class Maze():
         self._create_cells()
         self._break_enterance_and_exit()
         self._break_walls_r(0,0)
+        self._reset_visited_cells()
     
     def _create_cells(self):
         top_left_point = Point(self.x1, self.y1)
@@ -111,3 +112,8 @@ class Maze():
                 adjacent_cells.append((x, y+1))
         #print(adjacent_cells)
         return adjacent_cells
+
+    def _reset_visited_cells(self):
+        for i in self._cells:
+            for j in i:
+                j.visited = False
