@@ -64,6 +64,7 @@ class Cell():
         self._tl_point = tl_point
         self._br_point = br_point
         self.window = window
+        self.visited = False
     
     def draw(self):
         if self.window == None:
