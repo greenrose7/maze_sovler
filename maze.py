@@ -97,13 +97,13 @@ class Maze():
     
     def _find_adjacent_cells(self, x, y): #Finds adjacent unvisited cells (as tuples)
         adjacent_cells = []
-        if x-1 > 0:
+        if x-1 >= 0:
             if self._cells[x-1][y].visited == False:
                 adjacent_cells.append((x-1, y))
         if x+1 < self.num_cols:
             if self._cells[x+1][y].visited == False:
                 adjacent_cells.append((x+1, y))
-        if y-1 > 0:
+        if y-1 >= 0:
             if self._cells[x][y-1].visited == False:
                 adjacent_cells.append((x, y-1))
         if y+1 < self.num_rows:
