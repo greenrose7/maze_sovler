@@ -110,10 +110,56 @@ class Maze():
         if y+1 < self.num_rows:
             if self._cells[x][y+1].visited == False:
                 adjacent_cells.append((x, y+1))
-        #print(adjacent_cells)
+        return adjacent_cells
+
+    def _find_adjacent_cells_unwalled(self, x, y): #Finds adjacent unvisited cells with open walls (as tuples)
+        adjacent_cells = []
+        if x-1 >= 0:
+            if self._cells[x-1][y].visited == False:
+                if self._cells[x-1][y].has_right_wall == False:
+                    adjacent_cells.append((x-1, y))
+        if x+1 < self.num_cols:
+            if self._cells[x+1][y].visited == False:
+                if self._cells[x+1][y].has_left_wall == False:
+                    adjacent_cells.append((x+1, y))
+        if y-1 >= 0:
+            if self._cells[x][y-1].visited == False:
+                if self._cells[x][y-1].has_bottom_wall == False:
+                    adjacent_cells.append((x, y-1))
+        if y+1 < self.num_rows:
+            if self._cells[x][y+1].visited == False:
+                if self._cells[x][y+1].has_top_wall == False:
+                    adjacent_cells.append((x, y+1))
         return adjacent_cells
 
     def _reset_visited_cells(self):
         for i in self._cells:
             for j in i:
                 j.visited = False
+    
+    def solve(self):
+        if self._solve_r(0,0) == True:
+            return True
+        else:
+            return False
+
+    def _solve_r(self, cell_x, cell_y):
+        self._animate(0.1)
+        current_cell :Cell
+        current_cell = self._cells[cell_x][cell_y]
+        current_cell.visited = True
+        if current_cell == self._cells[self.num_cols-1][self.num_rows-1]:
+            return True
+        open_neighbors = self._find_adjacent_cells_unwalled(cell_x, cell_y)
+        if len(open_neighbors) < 1:
+            return False
+        for i in open_neighbors:
+            new_x, new_y = i
+            current_cell.draw_move(self._cells[new_x][new_y])
+            if self._solve_r(new_x, new_y) == True:
+                return True
+            else:
+                current_cell.draw_move(self._cells[new_x][new_y], True)
+        return False
+
+        

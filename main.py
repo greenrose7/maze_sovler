@@ -1,6 +1,7 @@
 from graphics import *
 from maze import Maze
 from time import sleep
+from random import random
 
 def main():
     win = Window(800, 600, "my title")
@@ -8,7 +9,8 @@ def main():
     # cell1, cell2, cell3 = test_cells(win)
     # test_move_draw(cell1, cell2, cell3)
     # test_move_draw(cell1, cell2, cell3, undo=True)
-    maze = Maze(30, 30, 8, 10, 50, 60, win)
+    maze = Maze(30, 30, 11, 15, 50, 50, win, random())
+    maze.solve()
     win.wait_for_close()
 
 def test_lines(window :Window):
