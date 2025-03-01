@@ -40,18 +40,18 @@ class Maze():
                 cell = Cell(top_left_point, Point(top_left_point.x + self.cell_size_x, top_left_point.y + self.cell_size_y), self.win)
                 col.append(cell)
                 cell.draw()
-                self._animate()
+                self._animate(0.02)
                 top_left_point = Point(top_left_point.x, top_left_point.y + self.cell_size_y)
             self._cells.append(col)
             # top_left_point.y = self.y1
             # top_left_point.x += self.cell_size_x
             top_left_point = Point(top_left_point.x + self.cell_size_x, self.y1)
     
-    def _animate(self):
+    def _animate(self, speed=0.05):
         if self.win == None:
             return
         self.win.redraw()
-        sleep(0.05)
+        sleep(speed)
     
     def _break_enterance_and_exit(self):
         ## Entrance (top left cell)
@@ -76,7 +76,7 @@ class Maze():
             current_neighbors = self._find_adjacent_cells(current_x, current_y)
             if len(current_neighbors) < 1:
                 self._cells[current_x][current_y].draw()
-                self._animate()
+                self._animate(0.04)
                 return
             to_visit.extend(current_neighbors)
             #print(f"Neighbors: {current_neighbors}")
